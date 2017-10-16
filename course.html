@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>eKelas</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="css/jquery.demo.css" />
+    <script src="js/jquery-2.2.0.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+	<script>		
+		$(document).ready(function() {
+			selectCourse()
+			
+			//get module list
+			$(document).on("click",".selectModule",function(){//the btncari as the trigger.
+				var course_id = $(this).attr("id");
+				var urlcarian="http://localhost/eclassv1/mobile/doGeModule.php";
+				//AJAX configuration
+				$.ajax({
+					url:urlcarian,//the URL
+					type:'post',//method used
+					async:'true',
+					crossDomain : 'true',
+					data:{course_id:course_id},//the data parameter to transfer
+					success:function(result){//if the connection success
+						//display the record in div displayresult
+						$("#displayresult").html(result).enhanceWithin();
+					},//success
+					error:function(request,error){//if the connection fail
+						$("#error").html("Network error!!!").enhanceWithin();
+					}//error
+				});//ajax
+			});
+			
+			//get topic list
+			$(document).on("click",".selectTopic",function(){//the btncari as the trigger.
+				var module_id = $(this).attr("id");
+				var urlcarian="http://localhost/eclassv1/mobile/doGetTopic.php";
+				//AJAX configuration
+				$.ajax({
+					url:urlcarian,//the URL
+					type:'post',//method used
+					async:'true',
+					crossDomain : 'true',
+					data:{module_id:module_id},//the data parameter to transfer
+					success:function(result){//if the connection success
+						//display the record in div displayresult
+						$("#displayresult").html(result).enhanceWithin();
+					},//success
+					error:function(request,error){//if the connection fail
+						$("#error").html("Network error!!!").enhanceWithin();
+					}//error
+				});//ajax
+			});
+			
+			//get note list
+			$(document).on("click",".selectContent",function(){//the btncari as the trigger.
+				var topic_id = $(this).attr("id");
+				var urlcarian="http://localhost/eclassv1/mobile/doTopicContent.php";
+				//AJAX configuration
+				$.ajax({
+					url:urlcarian,//the URL
+					type:'post',//method used
+					async:'true',
+					crossDomain : 'true',
+					data:{topic_id:topic_id},//the data parameter to transfer
+					success:function(result){//if the connection success
+						//display the record in div displayresult
+						$("#displayresult").html(result).enhanceWithin();
+					},//success
+					error:function(request,error){//if the connection fail
+						$("#error").html("Network error!!!").enhanceWithin();
+					}//error
+				});//ajax
+			});
+		});
+		
+		//get course list
+		function selectCourse() {
+			var urlcarian="http://localhost/eclassv1/mobile/doGetCourse.php";
+			//AJAX configuration
+			$.ajax({
+				url:urlcarian,//the URL
+				type:'get',//method used
+				async:'true',
+				crossDomain : 'true',
+				success:function(result){//if the connection success
+					//display the record in div displayresult
+					$("#displayresult").html(result).enhanceWithin();
+				},//success
+				error:function(request,error){//if the connection fail
+					$("#error").html("Network error!!!").enhanceWithin();
+				}//error
+			});//ajax
+		}
+			
+		function logOutClass() {
+			localStorage.removeItem("userProfile");
+			window.location.href = "index.html";
+		}
+	</script>
+</head>
+<body>
+
+<div data-role="page" class="eclass-page">
+	<div data-role="panel" id="menu-panel" class="menu-panel" data-position="left" data-display="overlay" data-theme="a">
+        <ul data-role="listview">
+        	<li data-icon="home"><a href="home.html" data-ajax="false">Utama</a></li>
+        	<li data-icon="user"><a href="profile.html" data-ajax="false">Profil</a></li>
+            <li data-icon="user"><a href="course.html" data-ajax="false">Kursus</a></li>
+            <li data-icon="power"><a href="#" data-ajax="false" onClick="logOutClass()">Log Keluar</a></li>
+        </ul>
+    </div><!-- /panel -->
+
+	<div data-role="header" class="eclass-header">
+		<h1>eKelas</h1>
+        <a href="#menu-panel" data-role="button" role="button" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext">Menu</a>
+	</div><!-- /header -->
+
+	<div role="main" class="eclass-content ui-content">
+    	<h4>Senarai Kursus</h4>
+        <div id="displayresult"> <!-- DIV to display the content from server page -->
+        </div>
+        <div id="error">
+		</div>
+	</div><!-- /content -->
+
+	<div data-role="footer" data-position="fixed" class="eclass-footer ui-footer-fixed">
+		<h4>Hak Milik Terpelihara @ 2016, ILPKL</h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>eKelas</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="css/jquery.demo.css" />
+    <script src="js/jquery-2.2.0.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+	<script>
+		$( document ).ready(function(){//check if the document/browser ready to run JavaScript
+			$('#login').click(function(){//the btncari as the trigger.
+				var username=$("#username").val();//capture the content of the textbox.
+				if (username == "") { // if username variable is empty
+					alert("Ralat pengguna");//display error message
+					$('#error').html("<span style='color:#cc0000'>Ralat:</span> Sila masukkan nama pengguna anda"); // printing error message
+					return false; // stop the script
+				}
+                var password=$("#password").val();//capture the content of the textbox.
+				if (password == "") { // if password variable is empty
+					alert("Ralat pengguna");//display error message
+					$('#error').html("<span style='color:#cc0000'>Ralat:</span> Sila masukkan kata laluan anda"); // printing error message
+					return false; // stop the script
+				}
+				//write to the div named displayresult
+				$("#error").html("Carian pengguna "+username).enhanceWithin();
+				//change your web-server here
+				//in this case, the file search.php is to handle the online database connection
+				var urlcarian="http://localhost/eclassv1/mobile/doLogin.php";
+				if($.trim(username).length > 0 && $.trim(password).length > 0) {
+					//AJAX configuration
+					$.ajax({
+						url:urlcarian,//the URL
+						type:'post',//method used
+						async:'true',
+						crossDomain : 'true',
+						dataType: 'json',
+						data:{username:username, password:password},//the data parameter to transfer
+						beforeSend: function(){ $("#login").val('Connecting...');},
+						success:function(result){//if the connection success
+							//display the record in div displayresult
+							if(result.length != 0){
+                                localStorage.setItem("userProfile", JSON.stringify(result));
+                                window.location.href = "home.html";
+							} else {
+								$("#login").val('Log In');
+								alert("Ralat pengguna");//display error message
+								$("#error").html("<span style='color:#cc0000'>Ralat:</span> Nama pengguna atau kata laluan tidah sah.");
+							}
+						},//success
+						error:function(request,error){//if the connection fail
+							$("#login").val('Log In');
+							alert("Ralat rangkaian");//display error message
+							$("#error").html("Network error!!!").enhanceWithin();
+						}//error
+					});//ajax
+				}
+				return false;
+			});//btncari click
+		});//end document ready
+    </script>
+</head>
+<body>
+
+<div data-role="page" class="eclass-page">
+	<div data-role="header" class="eclass-header">
+		<h1>eKelas</h1>
+		<a href="index.html" data-role="button" role="button" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext">Back</a>
+	</div><!-- /header -->
+
+	<div role="main" class="eclass-content ui-content">
+    	<h3>Daftar Masuk</h3>
+    	<form action="" method="post">
+            Nama Pengguna
+            <input type="text" class="input" id="username"/>
+            Kata Laluan
+            <input type="password" class="input" id="password"/>
+            <input type="submit" class="button button-primary" value="Log In" id="login"/>
+            <div id="error">
+            
+            </div>
+        </form> 
+	</div><!-- /content -->
+
+	<div data-role="footer" data-position="fixed" class="eclass-footer ui-footer-fixed">
+		<h4>Hak Milik Terpelihara @ 2016, ILPKL</h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+</body>
+</html>

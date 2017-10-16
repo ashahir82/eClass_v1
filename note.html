@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>eKelas</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="css/jquery.demo.css" />
+    <script src="js/jquery-2.2.0.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+	<script>
+		//$(document).ready(function() {
+			var topic_id = GetURLParameter("tid");
+			var urlcarian="http://localhost/eclassv1/mobile/doGetNote.php";
+			//AJAX configuration
+			$.ajax({
+				url:urlcarian,//the URL
+				type:'post',//method used
+				async:'true',
+				crossDomain : 'true',
+				data:{topic_id:topic_id},//the data parameter to transfer
+				success:function(result){//if the connection success
+					//display the record in div displayresult
+					$("#ekelas-body").html(result).enhanceWithin();
+					
+					//go to it
+					$.mobile.changePage("#page_1");
+				},//success
+				error:function(request,error){//if the connection fail
+					$("#error").html("Network error!!!").enhanceWithin();
+				}//error
+			});//ajax
+		//});
+		
+		//get url parameter
+		function GetURLParameter(sParam) {
+			var sPageURL = window.location.search.substring(1);
+			var sURLVariables = sPageURL.split('&');
+			for (var i = 0; i < sURLVariables.length; i++)
+			{
+				var sParameterName = sURLVariables[i].split('=');
+				if (sParameterName[0] == sParam)
+				{
+					return sParameterName[1];
+				}
+			}
+		}
+		
+		function logOutClass() {
+			localStorage.removeItem("userProfile");
+			window.location.href = "index.html";
+		}
+	</script>
+</head>
+<body id="ekelas-body">
+
+</body>
+</html>

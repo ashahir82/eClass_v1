@@ -1,0 +1,202 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* Header */
+.eclass-page .eclass-header {
+	background: #fff;
+	border-top: 4px solid #3eb249;
+	border-bottom-color: #eee;
+}
+.eclass-page .eclass-header h2 {
+	padding: .4em 0 .1em;
+	margin: 0 3em;
+}
+.eclass-page .eclass-header h2 a {
+	display: inline-block;
+	text-decoration: none;
+	min-height: 40px;
+}
+.eclass-page .eclass-header h2 img {
+	display: block;
+	width: 140px;
+	height: auto;
+}
+.eclass-page .eclass-header h2 > img {
+	display: inline-block;
+}
+.eclass-page .eclass-header p {
+	position: absolute;
+	bottom: -2em;
+	left: 1em;
+	margin: 0;
+	color: #666;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	text-transform: uppercase;
+}
+.eclass-page .eclass-header .ui-btn {
+	width: 2em;
+	height: 2em;
+	background: none;
+	border: 0;
+	top: 50%;
+	margin-top: -1em;
+	-webkit-border-radius: .3125em;
+	border-radius: .3125em;
+	opacity: .4;
+	filter: Alpha(Opacity=40);
+}
+
+/* COntent */
+.eclass-page .eclass-content {
+    padding-top: 3em;
+}
+
+/* Footer */
+.eclass-page .eclass-footer.ui-footer {
+	position: absolute;
+	bottom: 0;
+	padding-bottom: 0;
+}
+.eclass-page .eclass-footer {
+	border-top: 1px solid #3eb249;
+}
+.eclass-page .eclass-footer p {
+	font-size: .8em;
+	color: #999;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	margin: 0 1.25em 1.25em;
+}
+.eclass-page .eclass-footer p:first-child {
+	font-size: 1em;
+	color: #666;
+	font-weight: 400;
+	margin: 1em 1em .75em;
+}
+
+/* Lists */
+.eclass-page .eclass-list .ui-btn,
+.eclass-page .eclass-list .ui-btn:visited,
+.eclass-page .eclass-list .ui-li-divider {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	text-shadow: none !important;
+}
+.eclass-page .eclass-list .ui-btn:hover,
+.eclass-page .eclass-list .ui-btn:active {
+	color: #3388cc;
+}
+.eclass-page .eclass-list .ui-btn.ui-btn-active {
+	color: #fff;
+}
+.eclass-page .eclass-list .ui-li-divider {
+	color: #3eb249;
+}
+
+/* Navmenu */
+.jqm-navmenu-panel .ui-listview > li .ui-collapsible-heading {
+	margin: 0;
+}
+.jqm-navmenu-panel .ui-collapsible.ui-li-static {
+	padding: 0;
+	border: none !important;
+}
+.jqm-navmenu-panel .ui-collapsible + li > .ui-btn,
+.jqm-navmenu-panel .ui-collapsible + .ui-collapsible > .ui-collapsible-heading > .ui-btn,
+.jqm-navmenu-panel .ui-panel-inner > .ui-listview > li.ui-first-child .ui-btn {
+	border-top: none !important;
+}
+.jqm-navmenu-panel .ui-listview .ui-listview .ui-btn {
+	padding-left: 1.5em;
+	color: #999;
+}
+.jqm-navmenu-panel .ui-listview .ui-listview .ui-btn.ui-btn-active {
+	color: #fff;
+}
+.jqm-navmenu-panel .ui-btn:after {
+	opacity: .4;
+	filter: Alpha(Opacity=40);
+}
+
+/* Announcement */
+.wrap {
+	white-space: normal !important;
+}
+
+@media (min-width: 60em) {
+	.eclass-page .eclass-header h2 {
+		padding: 1em 0 .7em;
+		margin: 0 1em 0 3%;
+		text-align: left;
+	}
+	.eclass-page .eclass-header h2 img {
+		width: 275px;
+		height: 78px;
+	}
+	.eclass-page .eclass-header p {
+		bottom: auto;
+		left: auto;
+		top: 50%;
+		right: 15%;
+		font-size: 1.2em;
+		margin-top: -.625em;
+	}
+	.eclass-page .eclass-footer p {
+		float: right;
+		margin: 1.5em 3% 1.5em 1.5em;
+	}
+	.eclass-page .eclass-footer p:first-child {
+		float: left;
+		margin: 1.25em 1.25em 1.25em 3%;
+	}
+	.eclass-page .eclass-navmenu-link {
+		display: none;
+	}
+	.eclass-page .menu-panel {
+		visibility: visible;
+		position: relative;
+		left: 0;
+		clip: initial;
+		float: left;
+		width: 25%;
+		background: none;
+		-webkit-transition: none !important;
+		-moz-transition: none !important;
+		transition: none !important;
+		-webkit-transform: none !important;
+		-moz-transform: none !important;
+		transform: none !important;
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
+	}
+	.eclass-page .page-content {
+		width: 67%;
+		padding-top: 2em;
+		padding-right: 3%;
+		padding-left: 5%;
+		float: right;
+	}
+	.menu-panel .ui-collapsible,
+	.menu-panel .ui-collapsible-content,
+	.menu-panel .ui-btn {
+		background: none !important;
+		border-color: #ddd !important;
+	}
+	.menu-panel .ui-btn.ui-btn-active {
+		color: #3388cc !important;
+	}
+	.menu-panel .ui-btn::after {
+		opacity: 0;
+		-webkit-transition: opacity 500ms ease;
+		-moz-transition: opacity 500ms ease;
+		transition: opacity 500ms ease;
+	}
+	.menu-panel .ui-btn:hover::after {
+		opacity: .4;
+	}
+}
+@media (min-width: 35em) {
+
+}
